@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<link lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUS Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-image: url(https://www.chesterfield.ac.uk/wp-content/uploads/sites/54/2021/03/Travel-buttons-sub-page-4.gif);
+            background-size:1440px;
+            /* background-repeat: no-repeat; */
+            color: rgb(250, 251, 253);
+            font-family:monospace;
+}
+        #formBus{
+            background-image:url(./bus2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin:10px 30px 80px 800px;
+            padding: 25px;
+            border-radius:50px;
+            border:5px solid rgb(250, 139, 98);
+
+        }
+        button{
+            font-family:cursive;
+            font-size:14px;
+            margin-top: 80px;
+            margin-left: 400px;
+        border-radius: 8px;
+        color: rgb(123, 1, 60);
+    padding:8px;
+background-color: rgb(250, 160, 140);
+        }
+button:hover{
+    background-color: rgb(115, 147, 242);
+    box-shadow: 1px 1px 10px rgb(15, 1, 1);
+color: rgb(50, 6, 246);}
+#stPnt,#enPnt{
+    border:4px double black;
+    padding: 5px;
+    border-radius: 5px;
+    background-color:rgb(250, 160, 140);
+    color: rgb(123, 1, 60);
+}
+        #foorm{
+            margin-left: 150px;
+            font-size: 20px;
+        }
+        #myh{color: rgb(124, 244, 148);
+        margin-bottom: 50px;
+        border: 2px dotted orange;
+        padding:5px 5px ;
+        margin-right: 65px;
+    font-size: 50px;}
+    .N{
+        position: fixed;
+        margin:10px 10px;
+        height:120px;
+        width: 120px;
+        border-left:4px solid rgb(38, 0, 162);
+        border-top:4px solid rgb(214, 21, 18);
+        border-bottom:4px solid rgb(226, 242, 5);
+        border-right:4px solid rgb(20, 208, 36);
+        display: inline-block;
+        border-radius: 50%;
+        animation: nar 0.4s linear infinite;
+
+    }
+    @keyframes nar{
+        to{
+            transform: rotate(360deg);
+        }
+    }
+    .N1{
+color: rgb(252, 250, 252);
+position: fixed;
+z-index: 5;
+display:block;
+margin: 40px 50px;
+font-size: 50px;
+font-family:cursive;
+text-shadow: 0px 0px 30px rgb(2, 8, 0);
+
+    }
+  
+   th{
+    font-size: 25px;
+    color: cornflowerblue;
+   }
+   a{
+    text-decoration: none;
+    color:rgb(29, 183, 6) 
+   }
+    
+    </style>
+</head>
+<body>
+    <div class="N"></div>
+    <h2 class="N1">N</h2>
+
+   <div id="formBus"> 
+    <form id="foorm" onsubmit=" cl()">
+        <h1 id="myh">Select Route</h1>
+       Pick up: <select id="stPnt">
+        <option></option>
+
+<option>Hyderabad</option>
+<option>Warangal</option>
+<option>Karim nagar</option>
+<option>Nizhamabadh</option>
+<option>Bhuvanagir</option>
+
+        </select>
+        <br><br>
+        Destination: <select id="enPnt">
+            <option></option>
+            <option>Hyderabad</option>
+            <option>Warangal</option>
+            <option>Karim nagar</option>
+            <option>Nizhamabadh</option>
+            <option>Bhuvanagir</option>
+            
+                    </select>
+
+    </form><br>
+    <button id="butn"  onclick="clc()" target="_blank">Check Availability</button>
+</div><br>
+
+
+<div ><button id="buttn" onclick="home()" style="display:none;">HOME</button></div>
+<div><div id="avlbBus" ></div>
+
+<script>
+
+tabarr=[
+            {from:"Hyderabad",to:"Warangal",avlbus:"Shakthi Travels",trltime:4+"hrs",ac_ornac:"N/A",rechtm:"6 P.M",bus_ar_time:"2 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Warangal",avlbus:"Nandhu Travels",trltime:"3:30"+"hrs",ac_ornac:"A.C",rechtm:"4:30 P.M",bus_ar_time:"12 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Warangal",avlbus:"Varun Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"2 P.M",bus_ar_time:"10 A.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+            {from:"Hyderabad",to:"Karim nagar",avlbus:"Tri Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Karim nagar",avlbus:"N Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Nizhamabadh",avlbus:"Shakthi Travels",trltime:6+"hrs",ac_ornac:"N/A",rechtm:"4 A.M",bus_ar_time:"7 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Bhuvanagir",avlbus:"Tri Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 A.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Hyderabad",to:"Bhuvanagir",avlbus:"Tirumala Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"6 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+            {from:"Warangal",to:"Bhuvanagir",avlbus:"sri shakthi Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Bhuvanagir",avlbus:"sri  Travels",trltime:8+"hrs",ac_ornac:"A.C",rechtm:"9 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Bhuvanagir",avlbus:"Narayana Travels",trltime:6+"hrs",ac_ornac:"A.C",rechtm:"2 P.M",bus_ar_time:"8 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Bhuvanagir",avlbus:"Raj Travels",trltime:6+"hrs",ac_ornac:"N/A",rechtm:"6 P.M",bus_ar_time:"12 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+
+            {from:"Warangal",to:"Karim nagar",avlbus:" shakthi Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Nizhamabadh",avlbus:"Shiva  Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Nizhamabadh",avlbus:"Shivaganga Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Warangal",to:"Hyderabad",avlbus:"Shakthi Travels",trltime:4+"hrs",ac_ornac:"N/A",rechtm:"2 P.M",bus_ar_time:"6 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+            {from:"Karim nagar",to:"Warangal",avlbus:"Ramarao Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Karim nagar",to:"Nizhamabadh",avlbus:"Shivaganga Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Karim nagar",to:"Hyderabad",avlbus:"Nandhu Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Karim nagar",to:"Bhuvanagir",avlbus:"Gangotri Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+            {from:"Nizhamabadh",to:"Warangal",avlbus:"Ramarao Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Nizhamabadh",to:"Karim nagar",avlbus:"Shivaganga Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Nizhamabadh",to:"Hyderabad",avlbus:"Nandhu Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Nizhamabadh",to:"Bhuvanagir",avlbus:"Gangotri Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+
+            {from:"Bhuvanagir",to:"Warangal",avlbus:"Gangotri Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Bhuvanagir",to:"Nizhamabadh",avlbus:"raja Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Bhuvanagir",to:"Hyderabad",avlbus:"ramana Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},
+            {from:"Bhuvanagir",to:"Karim nagar",avlbus:"Nandhu Travels",trltime:5+"hrs",ac_ornac:"A.C",rechtm:"4 A.M",bus_ar_time:"5 P.M",Bk:"<a target='_blank' href='bus-href.html'>Book</a>"},];
+
+        var avtb=document.getElementById('avlbBus');
+        var butn2=document.getElementById('buttn');
+        var fom2=document.getElementById('formBus');
+
+    function clc() {
+        var start=document.forms['foorm']['stPnt'].value;
+        var end=document.forms['foorm']['enPnt'].value;
+       
+var tt=`<table border='2px' class='table table-bordered' style='text-align:center' >
+    <tr><th>From</th><th>To</th><th>Available bus</th><th>Travel time</th><th>A/C or N/A</th>
+                                             <th>Reach time</th><th>Bus arrival time</th><th>Booking</th></tr>`
+
+
+for(a=0;a<tabarr.length;a++){
+
+    if(tabarr[a].from==start&&tabarr[a].to==end){
+
+    tt=tt+`<tr><td >${tabarr[a].from}</td><td >${tabarr[a].to}</td>
+        <td >${tabarr[a].avlbus}</td><td>${tabarr[a].trltime}</td>
+        <td>${tabarr[a].ac_ornac}</td><td>${tabarr[a].rechtm}</td><td>${tabarr[a].bus_ar_time}</td><td>${tabarr[a].Bk}</td></tr>`
+}avtb.innerHTML=tt+`</table>`;
+
+    fom2.style.display="none";
+    butn2.style.display="block";
+    avtb.style.display="block";
+       butn2.style.marginBottom="125px";
+       butn2.style.marginLeft="675px";
+       butn2.style.boxShadow="2px 2px 12px black"
+    }}
+    function home() {
+        fom2.style.display="block";
+        butn2.style.display="none";
+        avtb.style.display="none";
+        }
+   
+</script>
+</body>
+</html>
